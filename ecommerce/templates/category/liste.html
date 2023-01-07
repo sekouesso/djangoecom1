@@ -1,0 +1,54 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}Liste des categories{% endblock title %}
+{% block pageTitle %}
+    Listes categories
+{% endblock pageTitle %}
+
+{% block body %}
+<div class="m-3">
+  <a href="{% url 'add_category' %}" class="btn btn-outline-success">add_category</a>
+</div>
+<table class="table table-dark table-striped table-hover text-center">
+    <thead>
+      <tr>
+        <th scope="col">Libelle</th>
+        <th scope="col">actions</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for cat in categories %}
+        {% include './includes/modaldelete.html' %}
+        <tr>
+            <td>{{cat.libelle}}</td>
+            <td>
+                <a href="{% url 'update_category' cat.id %}" class="btn btn-outline-warning"><i class="fas fa-edit"></i></a>
+                <a href="{% url 'detail_category' cat.id %}" class="btn btn-outline-info"><i class="fas fa-detail"></i></a>
+                {% comment %} <a href="{% url 'delete_category' cat.id %}" class="btn btn-outline-danger">Delete</a> {% endcomment %}
+                {% comment %} <button class="btn btn-outline btn-info" data-toggle="modal" data-target="#Modal-Delete-{{ cat.id }}">Delete</button> {% endcomment %}
+                <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#Modal-Delete-{{ cat.id }}"> <i class="fas fa-trash"></i></button>
+            </td>
+          </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+  <div class="pagination">
+    <span class="step-links">
+        {% if categories.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ categories.previous_page_number }}">previous</a>
+        {% endif %}
+  
+        <span class="current">
+            Page {{ categories.number }} of {{ categories.paginator.num_pages }}.
+        </span>
+  
+        {% if categories.has_next %}
+            <a href="?page={{ categories.next_page_number }}">next</a>
+            <a href="?page={{ categories.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+  </div>
+  
+{% endblock body %}
+

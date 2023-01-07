@@ -1,0 +1,25 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}Ajout product{% endblock title %}
+{% block pageTitle %}
+    Ajout product
+{% endblock pageTitle %}
+
+{% block body %}
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <div class="card">
+            <div class="card-header">Formulaire d'ajout d'un produit</div>
+            <div class="card-body">
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{form.as_p}}
+                    <input type="submit" value="Ajouter" class = "btn btn-outline-success">
+                    <a href="{% url 'liste_product' %}" class="btn btn-outline-info">Annuler</a>
+                </form>
+            </div>
+          </div>
+    </div>
+</div>
+    
+{% endblock body %}

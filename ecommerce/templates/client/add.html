@@ -1,0 +1,19 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}Ajout client{% endblock title %}
+{% block pageTitle %}
+    Ajout client
+{% endblock pageTitle %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <form method="POST">
+                {% csrf_token %}
+                {{form.as_p}}
+                <input type="submit" value="Ajouter" class = "btn btn-primary">
+            </form>
+        </div>
+    </div>
+    
+{% endblock body %}

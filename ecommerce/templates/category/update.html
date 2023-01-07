@@ -1,0 +1,14 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}Modifier category{% endblock title %}
+{% block pageTitle %}
+Modifier category
+{% endblock pageTitle %}
+
+{% block body %}
+    <form method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="Update" class = "btn btn-warning">
+    </form>
+{% endblock body %}

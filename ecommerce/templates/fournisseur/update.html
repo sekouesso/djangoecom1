@@ -1,0 +1,14 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}Modifier fournisseur{% endblock title %}
+{% block pageTitle %}
+Modifier fournisseur
+{% endblock pageTitle %}
+
+{% block body %}
+    <form method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="Update" class = "btn btn-warning">
+    </form>
+{% endblock body %}
